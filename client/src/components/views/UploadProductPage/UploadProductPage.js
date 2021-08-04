@@ -44,6 +44,8 @@ function UploadProductPage() {
     }
 
     const updateImages = (newImages) => {
+
+        
         setImages(newImages)
     }
 
