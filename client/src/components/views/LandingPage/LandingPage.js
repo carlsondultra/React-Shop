@@ -10,6 +10,8 @@ function LandingPage() {
     const [Products, setProducts] = useState([])
     const [Skip, setSkip] = useState(0)
     const [Limit, setLimit] = useState(8)
+    const [PostSize, setPostSize] = useState(0)
+
 
     useEffect(() => {
 
@@ -27,6 +29,9 @@ function LandingPage() {
         .then(response => {
             if(response.data.success) {
                 setProducts(...Products, [response.data.products])
+
+                setPostSize(response.data.postSize)
+                
 
                 console.log(response.data.products)
             } else {
@@ -47,7 +52,8 @@ function LandingPage() {
     }
 
     getProducts(variables)
-
+    
+    setSkip(skip)
     }
     
     const renderCards = Products.map((product, index) => {
@@ -90,9 +96,12 @@ function LandingPage() {
             </div>
             }
             <br></br>
+
+            {PostSize >= Limit &&
             <div style={{display: 'flex', justifyContent: 'center'}}>
                 <button onClick={onLoadMore}>Load More</button>
             </div>
+            }
         </div>
     )
 }
