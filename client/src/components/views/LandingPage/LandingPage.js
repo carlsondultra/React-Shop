@@ -84,7 +84,7 @@ function LandingPage() {
 
             {Products.length === 0? 
             <div style={{display:'flex', height: '300px', justifyContent: 'center', alignItems: 'center'}}>
-                <h2>Nothing posted</h2>
+                <h2>Nothing posted yet</h2>
             </div> :
             <div>
 
