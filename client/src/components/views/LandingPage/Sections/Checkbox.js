@@ -36,7 +36,7 @@ const continents = [
 
 
 
-function CheckBox() {
+function CheckBox(props) {
 
     const [Checked, setChecked] = useState([])
 
@@ -52,6 +52,7 @@ const handleToggle = (value) => {
     }
 
     setChecked(newChecked)
+    props.handleFilters(newChecked)
 
 
 }
