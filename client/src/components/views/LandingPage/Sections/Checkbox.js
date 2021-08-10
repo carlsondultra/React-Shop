@@ -1,4 +1,7 @@
 import React from 'react'
+import {Checkbox, Collapse} from 'antd';
+
+const {Panel} = Collapse
 
 const continents = [
     {
@@ -31,10 +34,26 @@ const continents = [
     }
 ]
 
+const renderCheckboxLists = () => continents.map((value, index) => (
+    <React.Fragment key={index}>
+        <Checkbox 
+            onChange
+            type="checkbox"
+            checked
+        />
+        <span>{value.name}</span>
+    </React.Fragment>
+))
+
+
 function Checkbox() {
     return (
         <div>
-            
+            <Collapse defaultActiveKey={['0']}> 
+                <Panel header key="1">
+                    {renderCheckboxLists()}
+                </Panel>
+            </Collapse>
         </div>
     )
 }

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import Axios from 'axios';
 import {Icon, Col, Card, Row} from 'antd';
 import ImageSlider from '../../utils/ImageSlider';
+import CheckBox from './Sections/CheckBox';
 
 const {Meta} = Card;
 
@@ -81,6 +82,13 @@ function LandingPage() {
             <div style={{textAlign: 'center'}}>
                 <h2>Welcome! <Icon type="rocket"/></h2>
             </div>
+
+
+        <CheckBox />
+
+
+
+
 
             {Products.length === 0? 
             <div style={{display:'flex', height: '300px', justifyContent: 'center', alignItems: 'center'}}>

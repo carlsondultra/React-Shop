@@ -57,7 +57,8 @@ router.post("/uploadProduct", auth, (req, res) => {
 
     });
 
-    router.post("/getProducts", auth, (req, res) => {
+    router.post("/getProducts", (req, res) => {
+        console.log(req)
         
         let order = req.body.order ? req.body.order : "desc";
         let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
