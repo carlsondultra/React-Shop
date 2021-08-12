@@ -130,7 +130,7 @@ function LandingPage() {
             </Col>
             <Col lg={12} xs={24}>
                 <RadioBox 
-                    handleFilters = {filters => handleFilters(filters, "continents")}
+                    handleFilters = {filters => handleFilters(filters, "price")}
                 />
             </Col>
 
