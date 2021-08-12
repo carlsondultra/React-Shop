@@ -57,7 +57,7 @@ const handleToggle = (value) => {
 
 }
 
-    const renderCheckboxLists = () => continents.map((value, index) => (
+    const renderCheckboxLists = () => props.list && props.list.map((value, index) => (
         <React.Fragment key={index}>
             <Checkbox 
                 onChange={()=>handleToggle(value._id)}
