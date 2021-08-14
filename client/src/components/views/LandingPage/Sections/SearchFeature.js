@@ -1,9 +1,17 @@
 import React from 'react'
+import {Input} from 'antd';
+
+const {Search} = Input;
 
 function SearchFeature() {
     return (
         <div>
-            SearchFeature
+            <Search 
+                value
+                onChange
+                placeholder = "Search..."
+            
+            />
         </div>
     )
 }
