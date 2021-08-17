@@ -68,4 +68,20 @@ router.get("/logout", auth, (req, res) => {
     });
 });
 
+router.post("/addToCart", auth, (req,res) => {
+
+    User.findOne({_id: req.user._id})
+        ,(err, userInfo) => {
+
+            let duplicate = false;
+
+            userInfo.cart.forEach((cartInfo) => {
+                if(cartInfo.id === req.query.productId){
+                    duplicate=true;
+                }
+            })
+        })
+
+})
+
 module.exports = router;
