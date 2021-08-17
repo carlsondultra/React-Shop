@@ -80,7 +80,37 @@ router.post("/addToCart", auth, (req,res) => {
                     duplicate=true;
                 }
             })
-        })
+
+            if(duplicate){
+                User.findOneAndUpdate(
+                    {_id: req.user._id, "cart.id": req.query.productId },
+                    {$inc: {"cart.$.quantity": 1}},
+                    {new: true},
+                    () => {
+                        if(err) return res.json({success:false, err});
+                        res.status(200).json(userInfo.cart)
+                    }
+                )
+            } else {
+                User.findOneAndUpdate(
+                    {_id: req.user._id},
+                    {
+                        $push :{
+                            cart: {
+                                id: req.query.productId,
+                                quantity: 1,
+                                date: Date.now()
+                            }
+                        }
+                    },
+                    { new: true},
+                    (err, userInfo) => {
+                        if(err) return res.json({success:false, err});
+                        res.status(200).json(userInfo.cart)
+                    }
+                )
+            }
+        }
 
 })
 

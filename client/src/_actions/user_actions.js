@@ -58,5 +58,5 @@ export function addToCart(_id) {
         payload: request
     }
 }
-}
+
 
