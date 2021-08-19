@@ -122,7 +122,11 @@ router.post("/uploadProduct", auth, (req, res) => {
             let productIds = req.query.id
 
             if(type==="array"){
-
+                let ids = req.query.id.split(',')
+                productIds = [];
+                productIds = ids.map(item => {
+                    return item
+                })
             }
 
             //finding product information belonging to product Id

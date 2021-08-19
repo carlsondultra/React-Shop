@@ -4,7 +4,8 @@ import {
     REGISTER_USER,
     AUTH_USER,
     LOGOUT_USER,
-    ADD_TO_CART_USER
+    ADD_TO_CART_USER,
+    GET_CART_ITEMS_USER
 } from './types';
 import { USER_SERVER } from '../components/Config.js';
 
@@ -59,4 +60,34 @@ export function addToCart(_id) {
     }
 }
 
+export function getCartItems(cartItems, userCart) { 
+    const request = axios.get(`/api/product/products_by_id?id=${cartItems}&type=array`)
+    .then(response => {
+        
+    //Cart Detail in Redux
+    //Adding quantity data to Product Information
+        
+    userCart.foreach(cartItem => {
+        response.data.foreach((productDetail, i ) => {
+            if(cartItem.id === productDetail._id) {
+                response.data[i].quantity = cartItem.quantity;
+            }
+        })
+    })
+    return response.data;
+});
+        
+        
+        
+        
+
+    
+
+
+
+    return {
+        type: GET_CART_ITEMS_USER,
+        payload: request
+    }
+}
 
