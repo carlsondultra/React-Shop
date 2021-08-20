@@ -14,7 +14,7 @@ function LandingPage() {
     const [Products, setProducts] = useState([])
     const [Skip, setSkip] = useState(0)
     const [Limit, setLimit] = useState(8)
-    const [PostSize, setPostSize] = useState(0)
+    const [PostSize, setPostSize] = useState()
     const [SearchTerms, setSearchTerms] = useState("")
     const [Filters, setFilters] = useState({
         continents: [],
@@ -38,7 +38,7 @@ function LandingPage() {
         .then(response => {
             if(response.data.success) {
                 if(variables.loadMore) {
-                    setProducts(...Products, [response.data.products])
+                    setProducts([...Products, ...response.data.products])
                 } else {
                     setProducts(response.data.products)
                 }
