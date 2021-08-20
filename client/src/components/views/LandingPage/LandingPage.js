@@ -58,7 +58,9 @@ function LandingPage() {
     const variables = {
         skip: skip,
         limit: Limit,
-        loadMore: true
+        loadMore: true,
+        filters: Filters,
+        searchTerm: SearchTerms
 
     }
 
@@ -114,7 +116,6 @@ function LandingPage() {
 
     const handleFilters = (filters, category) => {
 
-        console.log(filters)
         const newFilters = {...Filters}
 
         newFilters[category] = filters
@@ -192,7 +193,6 @@ function LandingPage() {
             <div>
 
                 <Row gutter={[16,16]}>
-                    {Products.map((product, index) => {})}
                     {renderCards}
                 </Row>
 
