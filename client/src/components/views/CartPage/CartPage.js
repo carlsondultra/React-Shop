@@ -27,7 +27,9 @@ function CartPage(props) {
             <h1>My Cart</h1>
             <div>
 
-        <UserCardBlock />
+        <UserCardBlock 
+            products={props.user.cartDetail}
+        />
 
         <div style={{marginTop: '3rem'}}>
             <h2>Total amount: $</h2>
