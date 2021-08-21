@@ -51,7 +51,7 @@ export function logoutUser(){
 
 
 export function addToCart(_id) {
-    const request = axios.post(`${USER_SERVER}/addToCart?productId=${_id}`)
+    const request = axios.get(`${USER_SERVER}/addToCart?productId=${_id}`)
     .then(response => response.data);
 
     return {
@@ -67,8 +67,8 @@ export function getCartItems(cartItems, userCart) {
     //Cart Detail in Redux
     //Adding quantity data to Product Information
         
-    userCart.foreach(cartItem => {
-        response.data.foreach((productDetail, i ) => {
+    userCart.forEach(cartItem => {
+        response.data.forEach((productDetail, i ) => {
             if(cartItem.id === productDetail._id) {
                 response.data[i].quantity = cartItem.quantity;
             }

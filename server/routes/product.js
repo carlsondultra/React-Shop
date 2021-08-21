@@ -51,14 +51,13 @@ router.post("/uploadProduct", auth, (req, res) => {
     const product = new Product(req.body)
 
     product.save((err) => {
-        if(err) returnres.status(400).json({success: false, err})
+        if(err) return res.status(400).json({success: false, err})
         return res.status(200).json({success:true})
     })
 
     });
 
     router.post("/getProducts", (req, res) => {
-        console.log(req)
         
         let order = req.body.order ? req.body.order : "desc";
         let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
@@ -66,7 +65,7 @@ router.post("/uploadProduct", auth, (req, res) => {
         let skip = parseInt(req.body.skip);
 
         let findArgs = {};
-        let term = req.body.searchTerm
+        let term = req.body.searchTerm;
 
 
         for (let key in req.body.filters) {
@@ -117,12 +116,14 @@ router.post("/uploadProduct", auth, (req, res) => {
         });
 
 
-        router.get("products_by_id", auth, (req, res) => {
+        router.get("/products_by_id", (req, res) => {
             let type = req.query.type
             let productIds = req.query.id
 
+            console.log("req.query.id", req.query.id)
+
             if(type==="array"){
-                let ids = req.query.id.split(',')
+                let ids = req.query.id.split(',');
                 productIds = [];
                 productIds = ids.map(item => {
                     return item
