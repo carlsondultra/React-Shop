@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { User } = require("../models/User");
-
+const { Product } = require('../models/Product')
 const { auth } = require("../middleware/auth");
 
 //=================================
@@ -70,15 +70,15 @@ router.get("/logout", auth, (req, res) => {
     });
 });
 
-router.post("/addToCart", auth, (req,res) => {
+router.get("/addToCart", auth, (req,res) => {
 
     User.findOne({_id: req.user._id})
         ,(err, userInfo) => {
 
             let duplicate = false;
 
-            userInfo.cart.forEach((cartInfo) => {
-                if(cartInfo.id === req.query.productId){
+            userInfo.cart.forEach((item) => {
+                if(item.id === req.query.productId){
                     duplicate=true;
                 }
             })
@@ -88,7 +88,7 @@ router.post("/addToCart", auth, (req,res) => {
                     {_id: req.user._id, "cart.id": req.query.productId },
                     {$inc: {"cart.$.quantity": 1}},
                     {new: true},
-                    () => {
+                    (err, userInfo) => {
                         if(err) return res.json({success:false, err});
                         res.status(200).json(userInfo.cart)
                     }
@@ -97,7 +97,7 @@ router.post("/addToCart", auth, (req,res) => {
                 User.findOneAndUpdate(
                     {_id: req.user._id},
                     {
-                        $push :{
+                        $push: {
                             cart: {
                                 id: req.query.productId,
                                 quantity: 1,

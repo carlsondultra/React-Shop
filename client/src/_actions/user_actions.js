@@ -75,15 +75,7 @@ export function getCartItems(cartItems, userCart) {
         })
     })
     return response.data;
-});
-        
-        
-        
-        
-
-    
-
-
+    });
 
     return {
         type: GET_CART_ITEMS_USER,

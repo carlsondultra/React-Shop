@@ -132,10 +132,10 @@ router.post("/uploadProduct", auth, (req, res) => {
 
             //finding product information belonging to product Id
 
-            Product.find({'_id' :{ $in: productIds}})
+            Product.find({'_id': { $in: productIds}})
             .populate('writer')
             .exec((err,product) => {
-                if(err) return req.status(400).send(err)
+                if(err) return res.status(400).send(err)
                 return res.status(200).send(product)
             })
         
