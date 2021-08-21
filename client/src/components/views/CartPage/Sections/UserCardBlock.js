@@ -5,11 +5,11 @@ function UserCardBlock(props) {
     const renderCartImage = (images) => {
         if(images.length > 0) {
             let image = images[0]
-            return `http://localhost:5000/$/{image}`
+            return `http://localhost:5000/${image}`
         }
     }
 
-    const renderItems = () => {
+    const renderItems = () => (
         props.products && props.products.map(product => (
             <tr key={product._id}>
                 <td>
@@ -22,7 +22,7 @@ function UserCardBlock(props) {
                 <td><button onClick>Remove </button></td>
             </tr>
         ))
-    }
+    )
 
     return (
         <div>
