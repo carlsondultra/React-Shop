@@ -130,7 +130,7 @@ router.post("/uploadProduct", auth, (req, res) => {
                 })
             }
 
-            //finding product information belonging to product Id
+            //finding product information belonging to product id
 
             Product.find({'_id': { $in: productIds}})
             .populate('writer')
