@@ -32,7 +32,7 @@ function UserCardBlock(props) {
                         <th>Product Image</th>
                         <th>Product Quantity</th>
                         <th>Product Price</th>
-                        <th>Remove from Cart</th>
+                        <th>Remove Product from Cart</th>
                     </tr>
                 </thead>
                 <tbody>
