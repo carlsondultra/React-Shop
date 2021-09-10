@@ -10,6 +10,8 @@ import {Result, Empty} from 'antd';
 function CartPage(props) {
     const dispatch = useDispatch();
     const [Total, setTotal] = useState(0)
+    const [ShowTotal, setShowTotal] = useState(false)
+    const [ShowSuccess, setShowSuccess] = useState(false)
 
     useEffect(() => {
    
@@ -41,6 +43,7 @@ function CartPage(props) {
         })
 
         setTotal(total)
+        setShowTotal(true)
     }
 
     const removeFromCart = (productId) => {
@@ -60,25 +63,33 @@ function CartPage(props) {
             removeItem={removeFromCart}
         />
 
-        <div style={{marginTop: '3rem'}}>
-            <h2>Total amount: ${Total}</h2>
-        </div>
+        
 
-        <Result 
-            status="success"
-            title="Successfully Purchased Items!"
-        />
-
-        <div style={{
-            width: '100%', display: 'flex', flexDirection: 'column',
-            justifyContent: 'center'
-            }}>
-        </div>
-        <br />
-        <Empty description = {false}/>
-        <p>No Items In Cart</p>
-
+        {ShowTotal ? 
+            <div style={{marginTop: '3rem'}}>
+                <h2>Total amount: ${Total}</h2>
             </div>
+            :
+    
+
+        ShowSuccess ?
+            <Result 
+                status="success"
+                title="Successfully Purchased Items!"
+            /> :
+            <div style={{
+                width: '100%', display: 'flex', flexDirection: 'column',
+                justifyContent: 'center'
+                }}>
+            <br />
+            <Empty description = {false}/>
+            <p>No Items In Cart</p>
+    
+                </div>
+        }
+        
+
+        </div>
         </div>
     )
 }
