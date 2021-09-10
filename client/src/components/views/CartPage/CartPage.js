@@ -6,6 +6,7 @@ import {
 } from '../../../_actions/user_actions';
 import UserCardBlock from './Sections/UserCardBlock';
 import {Result, Empty} from 'antd';
+import Axios from 'axios';
 
 function CartPage(props) {
     const dispatch = useDispatch();
@@ -49,7 +50,25 @@ function CartPage(props) {
     const removeFromCart = (productId) => {
         
         dispatch(removeCartItem(productId))
-        .then()
+        .then(() => {
+
+            Axios.get('/api/users/userCartInfo')
+            .then(response => {
+                if(response.data.success) {
+                    if(response.data.cartDetail.length <= 0) {
+                        setShowTotal(false)
+                    } else {
+                        calculateTotal(response.data.cartDetail)
+                    }
+
+                } else {
+                    alert('Failed to get cart information')
+                }
+            })
+
+
+
+        })
 
     }
 
