@@ -179,6 +179,28 @@ router.post('/successBuy', auth, (req, res) => {
         })
     })
 
+    transactionData.user = {
+        id: req.user._id,
+        name: req.user.name,
+        lastname: req.user.lastname,
+        email: req.user.email
+    }
+
+    transactionData.data = req.body.paymentData;
+
+    transactionData.product = history
+
+    User.findOneAndUpdate(
+        {_id: req.user._id},
+        {$push: {history: history}, $set: {cart: [] } },
+        {new: true},
+        (err, user) => {
+            if(err) return res.json({ success: false, err });
+
+           
+        }
+    )
+
 
 })
 
