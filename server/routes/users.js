@@ -162,4 +162,24 @@ router.get('/userCartInfo', auth, (req, res) => {
     )
 } )
 
+
+router.post('/successBuy', auth, (req, res) => {
+    let history = [];
+    let transactionData = {}; 
+
+    //Putting payment info inside user collection
+    req.body.cartDetail.forEach((item) => {
+        history.push({
+            dateOfPurchase: Date.now(),
+            name: item.title,
+            id: item._id,
+            price: item.price,
+            quantity: item.quantity,
+            paymentId: req.body.paymentData.paymentID
+        })
+    })
+
+
+})
+
 module.exports = router;
