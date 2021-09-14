@@ -3,7 +3,9 @@ const router = express.Router();
 const { User } = require("../models/User");
 const { Product } = require('../models/Product')
 const { auth } = require("../middleware/auth");
+const { Payment } = require('../models/Payment');
 
+const async = require('async');
 //=================================
 //             User
 //=================================
@@ -197,6 +199,38 @@ router.post('/successBuy', auth, (req, res) => {
         (err, user) => {
             if(err) return res.json({ success: false, err });
 
+            const payment = new Payment(transactionData)
+            payment.save((err, doc) => {
+                if(err) return res.json({ success: false, err });
+
+                let products = [];
+                doc.product.forEach(item => {
+                    products.push({ id: item.id, quantity: item.quantity })
+                })
+
+                async.eachSeries(products, (item, callback) => {
+                    Product.update(
+                        {_id: item.id},
+                        {
+                            $inc: {
+                                "sold": item.quantity
+                            }
+                        },
+                        {new: false},
+                        callback
+                    )
+                }, (err) => {
+                    if(err) return res.json({success: false, err})
+                    res.status(200).json({
+                        success:true,
+                        cart: user.cart,
+                        cartDetail: []
+                    })
+                })
+
+
+
+            })
            
         }
     )
