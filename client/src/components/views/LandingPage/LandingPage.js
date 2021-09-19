@@ -198,7 +198,7 @@ function LandingPage() {
 
             </div>
             }
-            <br></br>
+            <br /><br />
 
             {PostSize >= Limit &&
             <div style={{display: 'flex', justifyContent: 'center'}}>
