@@ -12,9 +12,9 @@ import DetailProductPage from './views/DetailProductPage/DetailProductPage';
 import CartPage from './views/CartPage/CartPage';
 import HistoryPage from './views/HistoryPage/HistoryPage';
 
-//null   Anyone Can go inside
-//true   only logged in user can go inside
-//false  logged in user can't go inside
+//null   Anyone can access
+//true   Only logged in users can access
+//false  Logged in users cannot access
 
 function App() {
   return (
