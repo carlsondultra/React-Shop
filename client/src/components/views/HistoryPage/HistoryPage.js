@@ -11,10 +11,10 @@ function HistoryPage(props) {
             <table>
                 <thead>
                     <tr>
-                        <th>Payment Id</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Date of Purchase</th>
+                        <th>Payment Id:</th>
+                        <th>Price:</th>
+                        <th>Quantity:</th>
+                        <th>Date of Purchase:</th>
                     </tr>
                 </thead>
                 <tbody>
